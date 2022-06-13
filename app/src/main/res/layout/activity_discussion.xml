@@ -17,7 +17,6 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:paddingBottom="10dp"
-
         android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +26,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ti_email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        style="Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/btnsendmsg"
@@ -35,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnsendmsg">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/etText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

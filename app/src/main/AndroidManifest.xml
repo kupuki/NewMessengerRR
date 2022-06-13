@@ -12,7 +12,8 @@
         <activity android:name=".Pick_chat_activity"></activity>
         <activity android:name=".DiscussionActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,8 +1,6 @@
 package com.example.messengerr;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressbar;
 
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +45,19 @@ public class LoginActivity extends AppCompatActivity {
                 loginUserAccount();
             }
         });
+
+        Button btnRegister = findViewById(R.id.openRegistr);
+        Context context = (Context) this;
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-    private void loginUserAccount()
-    {
+
+    private void loginUserAccount() {
 
         // show the visibility of progress bar to show loading
         progressbar.setVisibility(View.VISIBLE);
@@ -58,16 +70,16 @@ public class LoginActivity extends AppCompatActivity {
         // validations for input email and password
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(),
-                    "Please enter email!!",
-                    Toast.LENGTH_LONG)
+                            "Please enter email!!",
+                            Toast.LENGTH_LONG)
                     .show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(),
-                    "Please enter password!!",
-                    Toast.LENGTH_LONG)
+                            "Please enter password!!",
+                            Toast.LENGTH_LONG)
                     .show();
             return;
         }
@@ -78,12 +90,11 @@ public class LoginActivity extends AppCompatActivity {
                         new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(
-                                    @NonNull Task<AuthResult> task)
-                            {
+                                    @NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(),
-                                            "Login successful!!",
-                                            Toast.LENGTH_LONG)
+                                                    "Login successful!!",
+                                                    Toast.LENGTH_LONG)
                                             .show();
 
                                     // hide the progress bar
@@ -95,14 +106,12 @@ public class LoginActivity extends AppCompatActivity {
                                             = new Intent(LoginActivity.this,
                                             Pick_chat_activity.class);
                                     startActivity(intent);
-                                }
-
-                                else {
+                                } else {
 
                                     // sign-in failed
                                     Toast.makeText(getApplicationContext(),
-                                            "Login failed!!",
-                                            Toast.LENGTH_LONG)
+                                                    "Login failed!!",
+                                                    Toast.LENGTH_LONG)
                                             .show();
 
                                     // hide the progress bar

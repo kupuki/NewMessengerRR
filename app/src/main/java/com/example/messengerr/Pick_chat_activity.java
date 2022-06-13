@@ -1,8 +1,5 @@
 package com.example.messengerr;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,8 +46,8 @@ public class Pick_chat_activity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Set<String> set = new HashSet<String>();
                 Iterator i = snapshot.getChildren().iterator();
-                while (i.hasNext()){
-                    set.add(((DataSnapshot)i.next()).getKey());
+                while (i.hasNext()) {
+                    set.add(((DataSnapshot) i.next()).getKey());
                 }
                 arrayAdpt.clear();
                 arrayAdpt.addAll(set);
@@ -63,14 +63,15 @@ public class Pick_chat_activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), DiscussionActivity.class);
-                i.putExtra("selected_topic", ((TextView)view).getText().toString());
+                i.putExtra("selected_topic", ((TextView) view).getText().toString());
                 i.putExtra("user_name", UserName);
                 startActivity(i);
             }
         });
 
     }
-    private void getUserName(){
+
+    private void getUserName() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         EditText userName = new EditText(this);
         builder.setView(userName);
@@ -80,8 +81,9 @@ public class Pick_chat_activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 UserName = userName.getText().toString();
-                if(UserName == "hello"){
-                    System.exit(0);
+                if (UserName.equals("hello")) {
+                    //System.exit(0);
+                    userName.setTextColor(getResources().getColor(R.color.yellow));
                 }
             }
         });
