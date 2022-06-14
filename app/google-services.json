@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "493887947506",
+    "firebase_url": "https://messenger1-bb7c2-default-rtdb.firebaseio.com",
+    "project_id": "messenger1-bb7c2",
+    "storage_bucket": "messenger1-bb7c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493887947506:android:1f6d54450c04da64f3866b",
+        "android_client_info": {
+          "package_name": "com.example.messengerr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493887947506-epok1eoaiarnf3pastbose51ghded7mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPte06fXIdMHWlGj9nbCMBYOckescp71Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493887947506-epok1eoaiarnf3pastbose51ghded7mb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493887947506:android:3b02480ed59c0ceaf3866b",
+        "android_client_info": {
+          "package_name": "com.example.newmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "493887947506-03etsi3qa1ekgd47i9r216bqv5tkq3m4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.newmessenger",
+            "certificate_hash": "5c65a193d583db3ddd0a901fbe611e34b395c8fd"
+          }
+        },
+        {
+          "client_id": "493887947506-epok1eoaiarnf3pastbose51ghded7mb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPte06fXIdMHWlGj9nbCMBYOckescp71Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "493887947506-epok1eoaiarnf3pastbose51ghded7mb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
