@@ -1,62 +1,45 @@
 package com.example.messengerr;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.messengerr.databinding.ActivityDiscussionBinding;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.collection.LLRBNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class DiscussionActivity extends AppCompatActivity {
 
-    Button btnSendMsg;
-    EditText etMsg;
-    ListView lvDisc;
-    ArrayList<String> listCoverstation = new ArrayList<String>();
-    ArrayAdapter arrayAdpt;
+    List<DiscussionItem> conversation = new ArrayList<>();
+    private ActivityDiscussionBinding binding;
     private DatabaseReference dbr;
-    String  SelectedTopic, user_msg_key;
+    private DiscussionAdapter adapter = new DiscussionAdapter(this);
+    String SelectedTopic, user_msg_key;
     String UserName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_discussion);
-
-        btnSendMsg = (Button) findViewById(R.id.btnsendmsg);
-        etMsg = (EditText) findViewById(R.id.etText);
-        lvDisc = (ListView) findViewById(R.id.lvConv);
-        arrayAdpt = new ArrayAdapter(this, android.R.layout.simple_list_item_1,listCoverstation);
-        lvDisc.setAdapter(arrayAdpt);
+        binding = ActivityDiscussionBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        binding.lvConv.setAdapter(adapter);
         UserName = getIntent().getExtras().get("user_name").toString();
         SelectedTopic = getIntent().getExtras().get("selected_topic").toString();
         setTitle("Чат : " + SelectedTopic);
         dbr = FirebaseDatabase.getInstance().getReference().child(SelectedTopic);
-        btnSendMsg.setOnClickListener(new View.OnClickListener() {
+        binding.btnsendmsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Map<String, Object> map = new HashMap<String, Object>();
@@ -65,10 +48,10 @@ public class DiscussionActivity extends AppCompatActivity {
 
                 DatabaseReference dbr2 = dbr.child(user_msg_key);
                 Map<String, Object> map2 = new HashMap<String, Object>();
-                map2.put("msg", etMsg.getText().toString());
+                map2.put("msg", binding.etText.getText().toString());
                 map2.put("user", UserName);
                 dbr2.updateChildren(map2);
-                etMsg.getText().clear();
+                binding.etText.getText().clear();
             }
         });
         dbr.addChildEventListener(new ChildEventListener() {
@@ -98,19 +81,17 @@ public class DiscussionActivity extends AppCompatActivity {
             }
         });
     }
-    public void updateConverstation(DataSnapshot snapshot){
-        String msg, user, conversation;
-        Iterator i = snapshot.getChildren().iterator();
-        String yellow;
-        while (i.hasNext()){
-            msg = (String) ((DataSnapshot)i.next()).getValue();
-            user = (String) ((DataSnapshot)i.next()).getValue();
 
-            conversation = user + ": " + msg;
+    public void updateConverstation(DataSnapshot snapshot) {
+        String msg, user;
+        Iterator<DataSnapshot> i = snapshot.getChildren().iterator();
+        while (i.hasNext()) {
+            msg = (String) (i.next()).getValue();
+            user = (String) (i.next()).getValue();
 
-            arrayAdpt.insert(conversation,  arrayAdpt.getCount());
-            arrayAdpt.notifyDataSetChanged();
+            conversation.add(new DiscussionItem(user, msg));
         }
+        adapter.submitList(conversation);
     }
 
 }

@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiscussionActivity"
     android:background="@drawable/bbg"
-    >
+    tools:context=".DiscussionActivity">
 
-    <ListView
-        android:stackFromBottom="true"
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lvConv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:divider="@null"
         android:dividerHeight="0dp"
         android:paddingBottom="10dp"
+        android:stackFromBottom="true"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/btnsendmsg"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ti_email"
         style="Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/btnsendmsg"
         app:layout_constraintBottom_toBottomOf="@id/btnsendmsg"
+        app:layout_constraintEnd_toStartOf="@id/btnsendmsg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnsendmsg">
+        app:layout_constraintTop_toTopOf="@id/btnsendmsg">
 
         <EditText
             android:id="@+id/etText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
- />
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -46,8 +43,8 @@
         android:id="@+id/btnsendmsg"
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:src="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@android:color/black"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
