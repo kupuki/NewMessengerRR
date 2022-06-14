@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(context, RegistrationActivity.class);
                 startActivity(intent);
+                System.exit(0);
             }
         });
     }

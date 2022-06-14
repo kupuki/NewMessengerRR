@@ -5,13 +5,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.ChildEventListener;
@@ -19,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.collection.LLRBNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,11 +101,13 @@ public class DiscussionActivity extends AppCompatActivity {
     public void updateConverstation(DataSnapshot snapshot){
         String msg, user, conversation;
         Iterator i = snapshot.getChildren().iterator();
+        String yellow;
         while (i.hasNext()){
             msg = (String) ((DataSnapshot)i.next()).getValue();
             user = (String) ((DataSnapshot)i.next()).getValue();
 
             conversation = user + ": " + msg;
+
             arrayAdpt.insert(conversation,  arrayAdpt.getCount());
             arrayAdpt.notifyDataSetChanged();
         }

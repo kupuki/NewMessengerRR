@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView geeksforgeeks;
+    private TextView gf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // initialising all views through id defined above
-        geeksforgeeks = findViewById(R.id.gfg);
-        geeksforgeeks.setText(
-                "GeeksForGeeks(Firebase Authentication)");
+        gf = findViewById(R.id.gfg);
+        gf.setText(
+                "Сюда нельзя попадать");
     }
 
 

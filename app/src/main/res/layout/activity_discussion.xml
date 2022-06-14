@@ -38,20 +38,16 @@
             android:id="@+id/etText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="message" />
+ />
     </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
-            android:id="@+id/btnsendmsg"
-            android:layout_width="55dp"
-            android:layout_height="47dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@android:color/black"/>
+    <Button
+        android:id="@+id/btnsendmsg"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@android:color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
